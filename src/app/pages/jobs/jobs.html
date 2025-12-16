@@ -1,0 +1,69 @@
+<h1>Job Postings</h1>
+
+<form class="filters" (ngSubmit)="applyFilters()">
+  <label>
+    Keyword
+    <input type="text" [(ngModel)]="search" name="search" />
+  </label>
+
+  <label>
+    Location
+    <input type="text" [(ngModel)]="location" name="location" />
+  </label>
+
+  <label>
+    Min Salary
+    <input type="number" [(ngModel)]="minSalary" name="minSalary" />
+  </label>
+
+  <label>
+    Max Salary
+    <input type="number" [(ngModel)]="maxSalary" name="maxSalary" />
+  </label>
+
+  <button type="submit">Apply Filters</button>
+  <button type="button" (click)="clearFilters()">Clear</button>
+</form>
+
+<p *ngIf="isLoading">Loading job postings...</p>
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+<ul *ngIf="!isLoading && jobs.length > 0">
+  <li *ngFor="let job of jobs" class="job-card">
+    <div class="job-main">
+      <strong>{{ job.title }}</strong>
+
+      <div class="job-company">
+        {{ job.companyName || job.company?.name || 'Unknown Company' }}
+      </div>
+
+      <div class="job-meta">
+        <span *ngIf="job.location">{{ job.location }}</span>
+        <span *ngIf="job.employmentType"> · {{ job.employmentType }}</span>
+        <span *ngIf="job.seniorityLevel"> · {{ job.seniorityLevel }}</span>
+      </div>
+
+      <div class="job-salary" *ngIf="job.salaryMin || job.salaryMax">
+        Salary:
+        <ng-container *ngIf="job.salaryMin">{{ job.salaryMin }}</ng-container>
+        <ng-container *ngIf="job.salaryMin && job.salaryMax"> - </ng-container>
+        <ng-container *ngIf="job.salaryMax">{{ job.salaryMax }}</ng-container>
+      </div>
+
+      <div class="job-posted">
+        Posted: {{ job.postedDate | date: 'yyyy-MM-dd' }}
+      </div>
+    </div>
+
+    <div class="job-actions">
+      <!-- Add Application button -->
+      <button type="button" (click)="addApplication(job)">
+        Add Application
+      </button>
+    </div>
+  </li>
+</ul>
+
+<p *ngIf="!isLoading && jobs.length === 0 && !errorMessage">
+  No job postings found.
+</p>

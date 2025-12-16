@@ -1,0 +1,121 @@
+<h1>Interviews</h1>
+<div *ngIf="lastInterview" class="notification-bar">
+  New interview scheduled for
+  <strong>{{ lastInterview.jobTitle }}</strong>
+  at <strong>{{ lastInterview.companyName }}</strong>
+  on {{ lastInterview.scheduledAt | date:'medium' }}
+</div>
+
+<!-- Application selector -->
+<div>
+  <label>Select Application</label>
+  <select
+    [ngModel]="selectedApplicationId"
+    (ngModelChange)="onApplicationChange($event)"
+  >
+    <option [ngValue]="null">-- Select an application --</option>
+    <option *ngFor="let app of applications" [ngValue]="app.id">
+      {{ app.title }} ({{ app.companyName || 'Unknown Company' }})
+    </option>
+  </select>
+</div>
+
+<p *ngIf="isLoadingApps">Loading applications...</p>
+
+<hr />
+
+<!-- Add / Edit Interview -->
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h3>{{ editingId == null ? 'Add Interview' : 'Edit Interview' }}</h3>
+
+  <p *ngIf="!selectedApplicationId">
+    Select an application above before adding an interview.
+  </p>
+
+  <div>
+    <label>Date &amp; Time</label>
+    <input type="datetime-local" formControlName="scheduledAt" />
+    <span
+      class="error"
+      *ngIf="
+        form.controls['scheduledAt'].touched &&
+        form.controls['scheduledAt'].invalid
+      "
+    >
+      Date &amp; time is required.
+    </span>
+  </div>
+
+  <div>
+    <label>Type</label>
+    <select formControlName="type">
+      <option *ngFor="let t of types" [ngValue]="t.value">
+        {{ t.label }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Location / Link</label>
+    <input type="text" formControlName="locationOrLink" />
+    <span
+      class="error"
+      *ngIf="
+        form.controls['locationOrLink'].touched &&
+        form.controls['locationOrLink'].hasError('required')
+      "
+    >
+      Location / link is required for online or phone interviews.
+    </span>
+  </div>
+
+  <div>
+    <label>Notes</label>
+    <textarea formControlName="notes" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label>Result</label>
+    <input type="text" formControlName="result" />
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="isSubmitting || !selectedApplicationId || form.invalid"
+  >
+    {{ editingId == null ? 'Save' : 'Update' }}
+  </button>
+
+  <button type="button" (click)="resetForm()" *ngIf="editingId != null">
+    Cancel
+  </button>
+</form>
+
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+<hr />
+
+<h3>Interviews for selected application</h3>
+
+<p *ngIf="isLoadingInterviews">Loading interviews...</p>
+
+<ul *ngIf="!isLoadingInterviews && interviews.length > 0">
+  <li *ngFor="let i of interviews">
+    <strong>{{ i.scheduledAt | date: 'yyyy-MM-dd HH:mm' }}</strong>
+    – type {{ i.type }}
+    <span *ngIf="i.locationOrLink"> @ {{ i.locationOrLink }}</span>
+    <span *ngIf="i.result"> – Result: {{ i.result }}</span>
+    <button type="button" (click)="edit(i)">Edit</button>
+    <button type="button" (click)="delete(i)">Delete</button>
+  </li>
+</ul>
+
+<p
+  *ngIf="
+    !isLoadingInterviews &&
+    interviews.length === 0 &&
+    selectedApplicationId
+  "
+>
+  No interviews yet for this application.
+</p>

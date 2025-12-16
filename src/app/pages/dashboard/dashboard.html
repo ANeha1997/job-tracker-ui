@@ -1,0 +1,20 @@
+<div *ngIf="lastInterview" class="notification-bar">
+  New interview scheduled for
+  <strong>{{ lastInterview.jobTitle }}</strong>
+  at <strong>{{ lastInterview.companyName }}</strong>
+  on {{ lastInterview.scheduledAt | date:'medium' }}
+</div>
+
+
+<h2>Dashboard</h2>
+
+<p>
+  You are logged in
+  <strong *ngIf="auth.userName">as {{ auth.userName }}</strong> 🎉
+</p>
+
+<p>
+  Use the navigation bar at the top to manage your
+  <strong>Applications</strong>, <strong>Companies</strong>, and
+  <strong>Interviews</strong>.
+</p>

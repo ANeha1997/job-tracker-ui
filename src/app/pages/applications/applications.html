@@ -1,0 +1,110 @@
+<h1>My Job Applications</h1>
+
+<section>
+  <h2>Add / Edit Application from Job Posting</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Job Posting</label>
+      <select formControlName="jobId" (change)="onJobChange($event)">
+        <option value="">-- choose job posting --</option>
+        <option *ngFor="let j of availableJobs" [value]="j.id">
+          {{ j.title }} – {{ j.companyName || 'Unknown company' }}
+          <span *ngIf="j.location"> ({{ j.location }})</span>
+        </option>
+      </select>
+      <span
+        *ngIf="form.controls['jobId'].touched && form.controls['jobId'].invalid"
+        class="error"
+      >
+        Please choose a job posting.
+      </span>
+    </div>
+
+    <div>
+      <label>Job Title</label>
+      <input type="text" formControlName="title" readonly />
+      <span
+        class="error"
+        *ngIf="form.controls['title'].touched && form.controls['title'].invalid"
+      >
+        Title is required (select a job).
+      </span>
+    </div>
+
+    <div>
+      <label>Location</label>
+      <input type="text" formControlName="location" readonly />
+    </div>
+
+    <div>
+      <label>Status</label>
+      <select formControlName="status">
+        <option *ngFor="let s of statuses" [value]="s.value">
+          {{ s.label }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label>Applied Date</label>
+      <input type="date" formControlName="appliedDate" />
+      <span
+        class="error"
+        *ngIf="
+          form.controls['appliedDate'].touched &&
+          form.controls['appliedDate'].invalid
+        "
+      >
+        Applied date is required.
+      </span>
+    </div>
+
+    <div>
+      <label>Job Link</label>
+      <input type="url" formControlName="sourceUrl" />
+    </div>
+
+    <div>
+      <label>Notes</label>
+      <textarea formControlName="notes" rows="3"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting || form.invalid">
+      {{ editingId ? 'Update Application' : 'Save' }}
+    </button>
+    <button type="button" (click)="resetForm()" *ngIf="editingId">
+      Cancel edit
+    </button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</section>
+
+<hr />
+
+<section>
+  <h2>Your Applications</h2>
+
+  <p *ngIf="isLoading">Loading applications...</p>
+  <p *ngIf="!isLoading && applications.length === 0">
+    You don’t have any applications yet.
+  </p>
+
+  <ul *ngIf="!isLoading && applications.length > 0">
+    <li *ngFor="let app of applications">
+      <strong>{{ app.title }}</strong>
+      <span *ngIf="app.companyName">
+        – {{ app.companyName }}
+      </span>
+      <span *ngIf="app.location">
+        ({{ app.location }})
+      </span>
+      – Status: {{ statusLabel(app.status) }}
+      <span> · Applied: {{ app.appliedDate | date: 'yyyy-MM-dd' }}</span>
+
+      <button type="button" (click)="edit(app)">Edit</button>
+      <button type="button" (click)="delete(app)">Delete</button>
+    </li>
+  </ul>
+</section>

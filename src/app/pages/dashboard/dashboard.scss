@@ -1,0 +1,67 @@
+/* =========================
+   Dashboard Page Styles
+   ========================= */
+
+:host {
+  display: block;
+  padding: 24px;
+  background: #f6f7fb;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* Card container */
+:host {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+h2 {
+  margin: 0 0 12px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Paragraphs */
+p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* Highlighted text */
+strong {
+  color: #111827;
+  font-weight: 700;
+}
+.notification-bar {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #91d5ff;
+  background: #e6f7ff;
+  font-weight: 600;
+}
+
+.error {
+  color: #b00020;
+  margin-top: 6px;
+  display: block;
+}
+.notification-bar {
+  background: #eaf6ff;
+  border: 1px solid #9fd3ff;
+  color: #0b2a3a;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}

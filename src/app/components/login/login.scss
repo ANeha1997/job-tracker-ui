@@ -1,0 +1,133 @@
+/* =========================
+   Login Page Styles
+   
+   ========================= */
+
+:host {
+  display: block;
+  min-height: calc(100vh - 60px);
+  padding: 24px;
+  background: #f6f7fb;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* Main card */
+.auth-container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+.auth-container h2 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Form layout */
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Labels */
+.auth-container label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* Inputs */
+.auth-container input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-container input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Angular invalid style */
+.auth-container input.ng-invalid.ng-touched {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Button */
+.auth-container button {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.05s ease, opacity 0.15s ease;
+}
+
+.auth-container button:active {
+  transform: translateY(1px);
+}
+
+.auth-container button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.auth-container .error {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Bottom text */
+.auth-container p {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.auth-container a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .auth-container {
+    margin: 24px auto;
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .auth-container h2 {
+    font-size: 24px;
+  }
+}

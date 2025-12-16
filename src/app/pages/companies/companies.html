@@ -1,0 +1,6 @@
+<ul *ngIf="!isLoading && filteredCompanies.length > 0"> 
+  <li *ngFor="let c of filteredCompanies"> 
+    <!-- Click company name to go to Applications page filtered by this company --> 
+     <a [routerLink]="['/applications']" [queryParams]="{ company: c.name }" class="company-link" > 
+      <strong>{{ c.name }}</strong> <span *ngIf="c.location"> ({{ c.location }})</span> </a> 
+    </li> </ul>

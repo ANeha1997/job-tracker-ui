@@ -1,0 +1,154 @@
+/* =========================
+   Root App Layout
+   ========================= */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f6f7fb;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* =========================
+   Header / Navigation
+   ========================= */
+
+.app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.nav-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Left / Center / Right sections */
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================
+   Brand
+   ========================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.brand-logo {
+  font-size: 20px;
+}
+
+.brand:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   Navigation Links
+   ========================= */
+
+.nav-link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-link:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* Active route */
+.nav-link.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Button-style nav link (Logout) */
+.button-link {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* =========================
+   User Info
+   ========================= */
+
+.nav-user {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* =========================
+   Main Content
+   ========================= */
+
+.app-main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+.app-footer {
+  text-align: center;
+  padding: 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+  .nav-bar {
+    flex-wrap: wrap;
+  }
+
+  .nav-center {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-right {
+    align-self: flex-end;
+  }
+}

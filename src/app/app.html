@@ -1,0 +1,77 @@
+<!-- Root layout for Job Tracker UI -->
+<div class="app-shell">
+  <!-- Top navigation bar -->
+  <header class="app-header">
+    <nav class="nav-bar">
+      <!-- Left: brand -->
+      <div class="nav-left">
+        <a routerLink="/dashboard" class="brand">
+          <span class="brand-logo">📋</span>
+          <span class="brand-text">Job Tracker</span>
+        </a>
+      </div>
+
+      <!-- Center: main links (only when logged in) -->
+      <div class="nav-center" *ngIf="auth.isLoggedIn()">
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+          Dashboard
+        </a>
+        <a routerLink="/applications" routerLinkActive="active" class="nav-link">
+          Applications
+        </a>
+        <a routerLink="/companies" routerLinkActive="active" class="nav-link">
+          Companies
+        </a>
+        <!-- NEW: Job Postings tab -->
+        <a routerLink="/jobs" routerLinkActive="active" class="nav-link">
+          Job Postings
+        </a>
+        <a routerLink="/interviews" routerLinkActive="active" class="nav-link">
+          Interviews
+        </a>
+        <!-- Admin-only link for running imports -->
+        <a
+          *ngIf="isAdmin"
+          routerLink="/import"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          Import Jobs
+        </a>
+      </div>
+
+      <!-- Right: auth area -->
+      <div class="nav-right">
+        <!-- Logged in -->
+        <ng-container *ngIf="auth.isLoggedIn(); else loggedOut">
+          <span class="nav-user">
+            <strong>Welcome {{ auth.userName || 'User' }}!</strong>
+          </span>
+          <button class="nav-link button-link" type="button" (click)="logout()">
+            Logout
+          </button>
+        </ng-container>
+
+        <!-- Logged out -->
+        <ng-template #loggedOut>
+          <a routerLink="/login" routerLinkActive="active" class="nav-link">
+            Login
+          </a>
+          <a routerLink="/register" routerLinkActive="active" class="nav-link">
+            Register
+          </a>
+        </ng-template>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main page content -->
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!--  footer -->
+  <footer class="app-footer">
+    <small>Job Application &amp; Interview Tracker</small>
+  </footer>
+</div>

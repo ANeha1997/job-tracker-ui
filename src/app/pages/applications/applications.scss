@@ -1,0 +1,198 @@
+/* =========================
+   Applications Page Styles
+   ========================= */
+
+:host {
+  display: block;
+  padding: 24px;
+  background: #f6f7fb;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* Headings */
+h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Sections as cards */
+section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  margin-bottom: 18px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 18px 0;
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Each field block */
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Inputs / selects / textarea */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Readonly/disabled fields */
+input[readonly],
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Error text */
+.error {
+  color: #b91c1c;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #2563eb;
+  color: #ffffff;
+  transition: transform 0.05s ease, opacity 0.15s ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*  2 buttons  */
+form button + button {
+  margin-top: 6px;
+  background: #6b7280; /* cancel edit button */
+}
+
+/* Messages */
+p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Applications list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each application row */
+li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+/* Make text take space and buttons stay to the right */
+li strong {
+  margin-right: 4px;
+}
+
+li button {
+  margin-left: auto;
+  background: #111827; /* default for action buttons */
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+/* Second button (Delete) */
+li button + button {
+  margin-left: 8px;
+  background: #dc2626;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  :host {
+    padding: 16px;
+  }
+
+  section {
+    padding: 14px;
+  }
+
+  li {
+    align-items: flex-start;
+  }
+
+  li button {
+    margin-left: 0;
+  }
+}
