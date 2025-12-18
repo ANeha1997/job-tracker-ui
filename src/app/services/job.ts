@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 export interface Job {
   id: number;
@@ -41,7 +41,7 @@ export class JobService {
 
   getJobs(
     page: number = 1,
-    pageSize: number = 50,
+    pageSize: number = 20,
     filters?: {
       search?: string;
       location?: string;

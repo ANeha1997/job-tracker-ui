@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { AuthService } from './auth';
 
 // export interface InterviewNotification {
@@ -34,7 +34,8 @@ export class SignalRService {
 
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.apiRoot}/hubs/notifications`, {
-        accessTokenFactory: () => this.auth.token || ''
+        accessTokenFactory: () => this.auth.token || '',
+        withCredentials: false
       })
       .withAutomaticReconnect()
       .build();
